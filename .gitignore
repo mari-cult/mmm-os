@@ -1,0 +1,5 @@
+/buck-*
+target/
+vendor/
+third_party/.cargo
+.bacon-locations

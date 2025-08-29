@@ -1,0 +1,36 @@
+[workspace]
+resolver = "3"
+members = []
+
+[package]
+name = "mmm-os"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[dependencies]
+bitflags = "2.9.1"
+chrono = { version = "0.4.41", default-features = false }
+critical-section = { version = "1.2.0", features = ["restore-state-bool"] }
+object = { version = "0.37.3", default-features = false, features = [
+    "alloc",
+    "elf",
+    "read_core",
+] }
+once_cell = { version = "1.21.3", default-features = false, features = [
+    "race",
+] }
+smccc = "0.2.1"
+spin = "0.10.0"
+
+[profile.dev.package."*"]
+opt-level = 2
+debug = false
+
+[profile.release]
+opt-level = 3
+lto = true
+debug = false
+
+[build-dependencies]
+cc = { version = "1.2.34", features = ["parallel"] }
